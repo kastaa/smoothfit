@@ -43,10 +43,5 @@ function [ yy_fin,yy_fit2,yy] = smoothtestsonde(yy,n,err)
 yyori = yy;
 yy = sgolayfilt(yy,3,11);
 yy_fit2 = smooth_fit(yy,n,err); %Application de smoothfit retourne une estimation du background
-
 yy_fin = yyori-yy_fit2; %Estimation du spectre finale
-yy_fin = sgolayfilt(yy_fin,3,11); %Filtrage du bruit (darknoise) avec un filtre gaussien passe bas
-
-yy_fin = yy_fin-min(yy_fin); %mise à zéro du spectre
-
 end
