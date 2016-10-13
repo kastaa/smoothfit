@@ -26,6 +26,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [yy] = smooth_fit(y,n,acc)
 
+y = y(:);
 yy = smooth(smooth(y,n),n); %Première estimation du background
 stand = std(y);% Calcule de la déviation standard du spectre original
 A = 1; %constante d'arrêt de l'algorithme

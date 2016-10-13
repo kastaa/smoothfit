@@ -22,9 +22,6 @@
 %        bruit
 %        -yy_fit2: C'est l'estimation du background par l'algorithme
 %        smooth_fit
-%        -yy: SPectre initial qui est envoyé dans l'algorithme smoothfit.
-%        Il s'agit du même spectre d'entrée avec un filtre pour retirer le
-%        darknoise initial. 
 %
 %Descrip^tion: Cette fonction permet d'estimer le background d'un spectre
 %Raman affecté par différent artéfact spectral. La fonction utilise un
@@ -38,10 +35,10 @@
 %modifié le: 2016-06-03
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [ yy_fin,yy_fit2,yy] = smoothtestsonde(yy,n,err)
+function [yy_fin,yy_fit2] = smoothtestsonde(yy,n,err)
 
-yyori = yy;
-yy = sgolayfilt(yy,3,11);
+yy = yy(:);
 yy_fit2 = smooth_fit(yy,n,err); %Application de smoothfit retourne une estimation du background
-yy_fin = yyori-yy_fit2; %Estimation du spectre finale
+yy_fin = yy-yy_fit2;
+
 end
